@@ -2,6 +2,12 @@ plugins {
     id("com.android.application")
 }
 
+// Exclude duplicate Kotlin stdlib modules (jdk7/jdk8 merged into stdlib 1.8+)
+configurations.all {
+    exclude(group = "org.jetbrains.kotlin", module = "kotlin-stdlib-jdk7")
+    exclude(group = "org.jetbrains.kotlin", module = "kotlin-stdlib-jdk8")
+}
+
 android {
     namespace = "com.example.myapplication"
     compileSdk = 36
@@ -9,7 +15,7 @@ android {
     defaultConfig {
         applicationId = "com.example.myapplication"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
